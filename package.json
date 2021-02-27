@@ -11,8 +11,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@vuikit/icons": "^0.8.1",
+    "@vuikit/theme": "^0.8.1",
+    "axios": "^0.21.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuikit": "^0.8.10"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -33,7 +37,7 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-vue": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
