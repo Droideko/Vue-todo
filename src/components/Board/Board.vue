@@ -1,47 +1,35 @@
 <template>
   <div>
-    <vk-button type="primary">Add</vk-button>
-    <ol>
-      <li v-for='user in users' :key='user.id'>
-        {{ user.name }}
-      </li>
-    </ol>
-    <router-link to="/">Перейти к Login</router-link>
-    <input type='text' v-model='inputValue' />
+    <Navigation />
+    <div class="uk-container uk-container-xlarge uk-margin-top">
+      <h1 class="uk-text-center">Todo list</h1>
+      <hr class="uk-divider-icon" />
+      <div v-for='todo in todos' :key='todo.id'>
+        <TodoItem :todo='todo'/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import HTTP from '../../services/HttpService';
-import { Button } from 'vuikit/lib/button';
+import Navigation from '../Navigation/Navigation';
+import TodoItem from '../Board/TodoItem/TodoItem';
 
 export default {
   name: 'Board',
   components: {
-    VkButton: Button,
+    Navigation,
+    TodoItem,
   },
   data() {
     return {
-      inputValue: '',
-      users: [
-        {
-          id: 0,
-          name: 'David',
-        },
-        {
-          id: 1,
-          name: 'Sam',
-        },
-        {
-          id: 2,
-          name: 'Alex',
-        },
-      ],
+      todos: [],
     };
   },
   mounted() {
-    HTTP.get('todos').then((response) => {
-      console.log(response);
+    HTTP.get('todos').then((data) => {
+      this.todos = data;
     });
   },
 
@@ -50,21 +38,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.my-class {
-  color: red
-}
+
 </style>
