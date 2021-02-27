@@ -1,15 +1,24 @@
 import Vue from 'vue';
+import Vuikit from 'vuikit';
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+import Board from '@/components/Board/Board';
+import Login from '../components/Login/Login';
+import '@vuikit/theme';
 
 Vue.use(Router);
+Vue.use(Vuikit);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/board',
+      name: 'Board',
+      component: Board,
     },
   ],
 });
