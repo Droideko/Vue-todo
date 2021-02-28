@@ -1,5 +1,5 @@
 <template>
-  <vk-modal :show.sync="show" center>
+  <vk-modal :show.sync="show" center stuck>
     <vk-modal-title>Create new Todo</vk-modal-title>
     <form
       class="uk-form-stacked"
@@ -44,7 +44,7 @@
           type="submit"
           class="uk-button uk-button-primary"
         >
-          Log in
+          Create
         </button>
       </p>
     </form>

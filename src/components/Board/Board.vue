@@ -13,7 +13,12 @@
         </button>
       </div>
       <div v-for='todo in todos' :key='todo.id'>
-        <TodoItem :todo='todo'/>
+        <TodoItem
+          :todo='todo'
+          :getTodosList='getTodosList'
+          :showDelete='showDelete'
+          :closeShowDelete='closeShowDelete'
+        />
       </div>
       <div v-if='!isLoaded' class="uk-flex uk-flex-center">
         <vk-spinner ratio="1.5"></vk-spinner>
@@ -25,6 +30,12 @@
       :closeShow='closeShow'
       :getTodosList='getTodosList'
     />
+    <ModalDeleteItem
+      :showDelete='showDelete'
+      :closeShowDelete='closeShowDelete'
+      :getTodosList='getTodosList'
+      :deleteId='deleteId'
+    />
   </div>
 </template>
 
@@ -33,6 +44,7 @@ import HTTP from '../../services/HttpService';
 import Navigation from '../Navigation/Navigation';
 import TodoItem from '../Board/TodoItem/TodoItem';
 import ModalCreateItem from '../Board/ModalCreateItem/ModalCreateItem';
+import ModalDeleteItem from '../Board/ModalDeleteItem/ModalDeleteItem';
 
 export default {
   name: 'Board',
@@ -40,12 +52,15 @@ export default {
     Navigation,
     TodoItem,
     ModalCreateItem,
+    ModalDeleteItem,
   },
   data() {
     return {
       todos: [],
       isLoaded: false,
       show: false,
+      showDelete: false,
+      deleteId: null,
     };
   },
   mounted() {
@@ -56,7 +71,11 @@ export default {
     closeShow() {
       this.show = false;
     },
-    async getTodosList() {
+    closeShowDelete(_, id) {
+      this.deleteId = id;
+      this.showDelete = !this.showDelete;
+    },
+    getTodosList() {
       HTTP.get('todos').then((data) => {
         this.todos = data;
       }).finally(() => {

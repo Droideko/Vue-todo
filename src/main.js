@@ -3,8 +3,13 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import '@vuikit/theme';
+import Vuikit from 'vuikit';
+import VuikitIcons from '@vuikit/icons';
 
 Vue.config.productionTip = false;
+Vue.use(Vuikit);
+Vue.use(VuikitIcons);
 
 /* eslint-disable no-new */
 new Vue({
