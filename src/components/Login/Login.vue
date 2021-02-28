@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-container uk-flex uk-flex-center">
+  <div class="uk-container uk-flex uk-flex-center login-container">
     <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
       <h3 class="uk-card-title uk-text-center">Log in</h3>
       <form
@@ -36,7 +36,7 @@
         >
           Log in
         </button>
-        <p class="uk-text-danger" v-if='true'>
+        <p class="uk-text-danger" v-if='errors.length'>
           {{ errors[0] }}
         </p>
       </form>
@@ -101,5 +101,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .login-container{
+    margin-top: 60px;
+  }
 </style>
