@@ -12,7 +12,7 @@
           Create
         </button>
       </div>
-      <div v-for='todo in todos' :key='todo.id'>
+      <div v-for='todo in getTodosByCreated' :key='todo.id'>
         <TodoItem
           :todo='todo'
           :getTodosList='getTodosList'
@@ -81,6 +81,12 @@ export default {
       }).finally(() => {
         this.isLoaded = true;
       });
+    },
+  },
+  computed: {
+    getTodosByCreated() {
+      return [...this.todos].sort((firstTodo, secondTodo) =>
+        new Date(secondTodo.createdAt) - new Date(firstTodo.createdAt));
     },
   },
 };
